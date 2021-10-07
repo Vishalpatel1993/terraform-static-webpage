@@ -33,22 +33,24 @@ resource "aws_s3_bucket" "root_bucket" {
 }
 
 #uploading the webpages to the buckets
-resource "aws_s3_bucket_object" "dist" {
+resource "aws_s3_bucket_object" "www_bucket" {
   for_each = fileset("./dist/", "*")
 
-  bucket = "www.${var.bucket_name}"
-  key    = each.value
-  source = "./dist/${each.value}"
+  bucket       = "www.${var.bucket_name}"
+  key          = each.value
+  source       = "./dist/${each.value}"
+  content_type = "text/html"
   # etag makes the file update when it changes; see https://stackoverflow.com/questions/56107258/terraform-upload-file-to-s3-on-every-apply
   etag = filemd5("./dist/${each.value}")
 }
 
-resource "aws_s3_bucket_object" "dist" {
+resource "aws_s3_bucket_object" "root_bucket" {
   for_each = fileset("./dist/", "*")
 
-  bucket = "var.bucket_name"
-  key    = each.value
-  source = "./dist/${each.value}"
+  bucket       = var.bucket_name
+  key          = each.value
+  source       = "./dist/${each.value}"
+  content_type = "text/html"
   # etag makes the file update when it changes; see https://stackoverflow.com/questions/56107258/terraform-upload-file-to-s3-on-every-apply
   etag = filemd5("./dist/${each.value}")
 }
