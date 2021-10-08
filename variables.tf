@@ -5,10 +5,10 @@ variable "domain_name" {
 
 variable "bucket_name" {
   type        = string
-  description = "The name of the bucket without the www. prefix. Normally domain_name."
+  description = "The name of the bucket without the www. prefix."
 }
 
 #Good practice to tag everything for billing, tracking etc.
-variable "common_tags" {
-  description = "Common tags you want applied to all components."
+variable "tags" {
+  description = "tags you want applied to all components."
 }

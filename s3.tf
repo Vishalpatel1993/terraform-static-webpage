@@ -4,6 +4,8 @@ resource "aws_s3_bucket" "www_bucket" {
   acl    = "public-read"
   policy = templatefile("templates/s3-policy.json", { bucket = "www.${var.bucket_name}" })
 
+
+  #allowing these settings so the content length of our files is sent to Cloudfront - without this, not all files will have gzip compression resulting in reduced page performance
   cors_rule {
     allowed_headers = ["Authorization", "Content-Length"]
     allowed_methods = ["GET", "POST"]
@@ -16,7 +18,7 @@ resource "aws_s3_bucket" "www_bucket" {
     error_document = "error.html"
   }
 
-  tags = var.common_tags
+  tags = var.tags
 }
 
 # S3 bucket for redirecting non-www to www.
@@ -29,7 +31,7 @@ resource "aws_s3_bucket" "root_bucket" {
     redirect_all_requests_to = "https://www.${var.domain_name}"
   }
 
-  tags = var.common_tags
+  tags = var.tags
 }
 
 #uploading the webpages to the buckets

@@ -57,7 +57,7 @@ resource "aws_cloudfront_distribution" "www_s3_distribution" {
     minimum_protocol_version = "TLSv1.1_2016"
   }
 
-  tags = var.common_tags
+  tags = var.tags
 }
 
 # Cloudfront S3 for redirect to www.
@@ -92,7 +92,7 @@ resource "aws_cloudfront_distribution" "root_s3_distribution" {
 
       headers = ["Origin"]
     }
-
+    # distribution has little caching as it all it does is point to the S3 bucket that redirects to our www website.
     viewer_protocol_policy = "allow-all"
     min_ttl                = 0
     default_ttl            = 86400
@@ -111,5 +111,5 @@ resource "aws_cloudfront_distribution" "root_s3_distribution" {
     minimum_protocol_version = "TLSv1.1_2016"
   }
 
-  tags = var.common_tags
+  tags = var.tags
 }

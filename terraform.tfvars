@@ -1,6 +1,6 @@
-domain_name = "vish-test.thenorth.sdfe.sciencedirect.com"
-bucket_name = "vish-test.thenorth.sdfe.sciencedirect.com"
+domain_name = "<DOMAIN_NAME>"
+bucket_name = "<BUCKET_NAME"
 
-common_tags = {
+tags = {
   Project = "vish-test-website-october2021"
 }

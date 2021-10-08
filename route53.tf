@@ -1,7 +1,7 @@
 # Route 53 for domain
 resource "aws_route53_zone" "main" {
   name = var.domain_name
-  tags = var.common_tags
+  tags = var.tags
 }
 
 resource "aws_route53_record" "root-a" {
@@ -28,7 +28,7 @@ resource "aws_route53_record" "www-a" {
   }
 }
 
-# Uncomment the below block if you are doing certificate validation using DNS instead of Email.
+#comment the below block if you are doing certificate validation using email instead of DNS.
 resource "aws_route53_record" "cert_validation" {
   for_each = {
     for dvo in aws_acm_certificate.ssl_certificate.domain_validation_options : dvo.domain_name => {

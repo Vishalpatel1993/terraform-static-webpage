@@ -8,9 +8,9 @@ terraform {
 
   #Backend for our tfstate file - Note that this bucket has been created manually in <Region>
   backend "s3" {
-    bucket = "vish-terraform-test-oct2021"
+    bucket = "<ORG>-<APPLICATION>-backend-statefile-<REGION>"
     key    = "prod/terraform.tfstate"
-    region = "us-east-1"
+    region = "<REGION>"
   }
 }
 
@@ -20,7 +20,7 @@ provider "aws" {
   region = "us-east-1"
 }
 
-#Provider for the SSL certificate - this must bbe created in is-east-1 in order for cloudfront to use them
+#Provider for the SSL certificate - this must be created in us-east-1 in order for cloudfront to use them
 provider "aws" {
   alias  = "acm_provider"
   region = "us-east-1"
