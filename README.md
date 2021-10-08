@@ -53,7 +53,7 @@ This code contains the following components
 
 - Route53 records pointing to our Cloudfront distributions. in route53.tf
 
-#Invalidating the cache 
+# Invalidating the cache 
 
 At the moment we have a Github workflow set up to automate the invalidation of the cloudfront cache. It can be found in .github/workflows/invalidate-cache.yml
 THIS WILL ONLY RUN IF YOU HAVE PUSHED THE REPO TO GITHUB OR MANUALLY TRIGGERED THE WORKFLOW
